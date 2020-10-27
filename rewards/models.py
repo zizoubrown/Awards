@@ -6,7 +6,7 @@ class Project(models.Model):
     title = models.CharField(max_length=30)
     image = models.ImageField(upload_to = 'project/')
     description = models.CharField(max_length=150)
-    #link
+    link = models.URLField(max_length=150)
 
     def __str__(self):
         return self.title
