@@ -11,5 +11,5 @@ class Project(models.Model):
 class Profile(models.Model):
     profile_pic = models.ImageField(upload_to = 'profile/')
     user_bio = models.CharField(max_length=150)
-    project = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
     #contact_info = 
