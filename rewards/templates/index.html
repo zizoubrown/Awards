@@ -1,5 +1,29 @@
 {%extends 'base.html'%}
+{% load static %}
 
 {% block content %}
-    <h1>Welcome</h1>
+{{block.super}}
+<header class="jumbotron bg-warning text-center">
+    <H1 class="welcome">Awward</H1>
+    <h3 class="sub">Rate My Appalication</h3>
+    <a href="{% url 'image_form' %}" class="btn btn-warning text-center">Post project</a>
+</header>
+
+<div class="container">
+    <div class=row>
+        {% for post in posts %}
+        <div class="col-md-4 ">
+            <div class="card" style="width: 18rem; margin-top: 10px">
+                <img src="{{ post.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{post.name}}</h5>
+                    <p class="card-text">{{post.caption}}</p>
+                    <a href="{{post.link}}" class="btn btn-warning">View</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
 {% endblock %}
