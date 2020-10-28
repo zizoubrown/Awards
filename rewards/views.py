@@ -1,17 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
+from django.contrib.auth import logout, update_session_auth_hash, login
 from django.http import HttpResponse
 from .models import  Profile, Image, Rating
-from .forms import UserRegisterForm, PostPictureForm
+from .forms import PostPictureForm, SignupForm
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def home(request):
-    post = Image.objects.all()
+    posts = Image.objects.all()
 
-    return render(request, 'index.html' ,{'post':post})
+    return render(request, 'index.html' ,{'posts':posts})
 
 def upload(request):
     if request.method == 'POST': 
@@ -38,6 +38,16 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
 
-def logout(request):
-    logout(request)
-    return redirect('login')
+def signup(request):
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = SignupForm()
+    return render(request, 'registration/signup.html', {'form': form})

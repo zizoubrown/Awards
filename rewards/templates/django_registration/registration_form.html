@@ -40,17 +40,25 @@
 <div class="login-form">
     <form action="/accounts/login/" method="post">
         {% csrf_token %}
-        <h2 class="text-center">Log in</h2>       
+        <h2 class="text-center">Sign In</h2>       
         <div class="form-group">
             <label class="label is-medium">Username</label>
             <input type="text" name="username" class="form-control" placeholder="Username" required="required" onfocus="this.value=''" value="{{ form.username }}"><br>
         </div>
         <div class="form-group">
-            <label class="label is-medium">Password</label>
-            <input type="password" name="password" class="form-control" placeholder="Password" required="required" onfocus="this.value=''" value="{{ form.password }}"><br>
+            <label class="label is-medium">Email</label>
+            <input type="email" name="email" class="form-control" placeholder="email" required="required" onfocus="this.value=''" value="{{ form.email }}"><br>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+            <label class="label is-medium">Password1</label>
+            <input type="password" name="password" class="form-control" placeholder="password" required="required" onfocus="this.value=''" value="{{ form.password }}"><br>
+        </div>
+        <div class="form-group">
+            <label class="label is-medium">Password2</label>
+            <input type="password" name="password" class="form-control" placeholder="password" required="required" onfocus="this.value=''" value="{{ form.confirm_password }}"><br>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
         </div>
         <div class="clearfix">
             <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
@@ -58,7 +66,7 @@
         </div>
         {{form.errors}}        
     </form>
-    <p class="text-center"><a href="{% url 'signup' %}">Create an Account</a></p>
+    <p class="text-center"><a href="{% url 'login' %}">Login</a></p>
 </div>
 </body>
 </html>
