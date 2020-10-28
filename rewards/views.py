@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout, update_session_auth_hash, login
+from django.contrib.auth import logout, update_session_auth_hash, login, authenticate
 from django.http import HttpResponse
 from .models import  Profile, Image, Rating
 from .forms import PostPictureForm, SignupForm
