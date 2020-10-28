@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from .models import  Profile, Image, Rating
 
 # Create your views here.
+@login_required(login_url='/accounts/login/')
 def home(request):
     post = Project.objects.all()
 
