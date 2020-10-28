@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 from django.http import HttpResponse
 from .models import  Profile, Image, Rating
+from .forms import UserRegisterForm, PostPictureForm
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def home(request):
-    post = Project.objects.all()
+    post = Image.objects.all()
 
     return render(request, 'index.html' ,{'post':post})
 
@@ -35,3 +37,7 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
+
+def logout(request):
+    logout(request)
+    return redirect('login')
