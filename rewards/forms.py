@@ -8,3 +8,8 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ["username", "email", "password1", "password2"]
+
+class PostPictureForm(forms.ModelForm):
+    class Meta:
+        model = Image
+        fields = ['caption', 'name', 'link','image']
