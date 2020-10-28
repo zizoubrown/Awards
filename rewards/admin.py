@@ -7,6 +7,6 @@ admin.site.index_title = "Welcome to Awards admin"
 
 
 # Register your models here.
-admin.site.register(Project)
+admin.site.register(Profile)
 admin.site.register(Image)
 admin.site.register(Rating)
