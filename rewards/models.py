@@ -34,7 +34,7 @@ class Image(models.Model):
     image = models.ImageField()
     name = models.CharField(max_length=30)
     caption = models.CharField(max_length = 60)
-     upload_date = models.DateTimeField(default=timezone.now)
+    upload_date = models.DateTimeField(default=timezone.now)
     # profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
     likes = models.PositiveIntegerField(default=0)
     link = models.CharField(max_length=100)
