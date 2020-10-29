@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rewards',
     'bootstrap4',
     'crispy_forms',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

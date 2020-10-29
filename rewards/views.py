@@ -5,6 +5,9 @@ from django.contrib.auth import logout, update_session_auth_hash, login, authent
 from django.http import HttpResponse
 from .models import  Profile, Image, Rating
 from .forms import PostPictureForm, SignupForm
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import ProfileSerializer, ImageSerializer
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
@@ -51,3 +54,15 @@ def signup(request):
     else:
         form = SignupForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+class Profile_list(APIView):
+    def get(self, request, format=None):
+        all_profile=Profile.objects.all()
+        serializers=ProfileSerializer(all_profile, many=True)
+        return Response(serializers.data)
+
+class Image_list(APIView):
+    def get(self,request,format=None):
+        all_images=Image.objects.all()
+        serializers=ImageSerializer(all_images, many=True)
+        return Response(serializers.data)
