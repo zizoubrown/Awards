@@ -9,7 +9,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 class Profile(models.Model):
-    profilePic = CloudinaryField('profilePic')
+    profilePic = models.ImageField(upload_to='profile/',null=True)
     bio = models.CharField(max_length=60,blank=True)
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     
@@ -35,7 +35,7 @@ class Profile(models.Model):
         self.delete()
 
 class Image(models.Model):
-    image = CloudinaryField('image')
+    image = models.ForeignKey(Image, on_delete = models.CASCADE)
     name = models.CharField(max_length=30)
     caption = models.CharField(max_length = 60)
     upload_date = models.DateTimeField(default=timezone.now)
