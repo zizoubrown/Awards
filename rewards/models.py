@@ -35,7 +35,7 @@ class Profile(models.Model):
         self.delete()
 
 class Image(models.Model):
-    image = models.ForeignKey(Image, on_delete = models.CASCADE)
+    image = models.ImageField()
     name = models.CharField(max_length=30)
     caption = models.CharField(max_length = 60)
     upload_date = models.DateTimeField(default=timezone.now)
